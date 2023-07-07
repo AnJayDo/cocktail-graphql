@@ -1,0 +1,64 @@
+enum ParantSpirit {
+  LIQUOR
+  RUM
+  VODKA
+  GIN
+  TEQUILA
+  SYRUP
+}
+
+enum MixingMethod {
+  SHAKE
+  STIR
+}
+
+enum GarnishType {
+  SLICE
+  QUARTER
+}
+
+type Query {
+  name: String!
+  cocktails: [Cocktail]!
+  cocktail: Cocktail!
+}
+
+type Mutation {
+  addCocktail(name: String!): Cocktail!
+}
+
+type Cocktail {
+  id: String!
+  name: String!
+  ingredients: [Ingredient]!
+  spirits: [Spirit]!
+  garnish: Garnish!
+  mixingMethod: MixingMethod!
+  glassType: Glass!
+  description: String!
+  instructions: String!
+  image: String!
+}
+
+type Ingredient {
+  id: String!
+  name: String!
+  amount: String!
+}
+
+type Garnish {
+  id: String!
+  name: String!
+  type: GarnishType!
+}
+
+type Spirit {
+  id: String!
+  name: String!
+  parent: ParantSpirit!
+}
+
+type Glass {
+  id: String!
+  name: String!
+}
