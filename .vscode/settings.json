@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "typescript.format.enable": true,
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vscode-graphql.cacheSchemaFileForLookup": true,
+  "graphql-config.load.legacy": true
+}

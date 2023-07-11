@@ -10,12 +10,22 @@ const port = process.env.PORT || 4000
 // Create a Yoga instance with a GraphQL schema.
 const yoga = createYoga({ 
   schema,
+  cors: {
+    origin: [`http://localhost:${process.env.PORT}`,'https://cocktail-graphql.dovanminhan.com/'],
+    credentials: true,
+    allowedHeaders: ['X-Custom-Header'],
+    methods: ['POST']
+  },
 })
  
 // Pass it into a server to hook into request handlers.
 const server = createServer(yoga)
 
-connect('mongodb://mongo:rwXH0euiYqIXeyDbyvEo@containers-us-west-174.railway.app:7627').then(() => {
+if(!process.env.MONGO_DB) {
+  throw new Error('MONGO_DB enviroment variable was not setup.')
+}
+
+connect(process.env.MONGO_DB as string).then(() => {
   console.info('Connected to MongoDB.');
 })
  
