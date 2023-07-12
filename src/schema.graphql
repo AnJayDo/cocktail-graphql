@@ -17,19 +17,6 @@ enum GarnishType {
   QUARTER
 }
 
-type Ingredient {
-  _id: String!
-  name: String!
-  amount: String!
-  unit: String!
-}
-
-type Garnish {
-  _id: String!
-  name: String!
-  type: GarnishType!
-}
-
 type Spirit {
   _id: String!
   name: String!
@@ -41,8 +28,21 @@ type GlassType {
   name: String!
 }
 
+type Garnish {
+  _id: String!
+  name: String!
+  type: GarnishType!
+}
+
+type Ingredient {
+  _id: String!
+  name: String!
+  amount: String!
+  unit: String!
+}
+
 type Cocktail {
-  id: String!
+  _id: String!
   name: String!
   ingredients: [Ingredient]!
   spirits: [Spirit]!
@@ -56,14 +56,28 @@ type Cocktail {
 
 type Query {
   name: String!
-  cocktails: [Cocktail!]!
-  cocktail: Cocktail!
-  spirits: [Spirit]!
+  cocktails: [Cocktail]!
+  cocktail(id: String!): Cocktail
+  spirits: [Spirit]
   glassTypes: [GlassType]
+  garnishs: [Garnish]
+  ingredients: [Ingredient]
 }
 
 type Mutation {
-  addCocktail(name: String!): Cocktail!
   addSpirit(name: String!, parent: String!): Spirit!
   addGlassType(name: String!): GlassType!
+  addGarnish(name: String!, type: GarnishType!): Garnish!
+  addIngredient(name: String!, amount: String!, unit: String!): Ingredient!
+  addCocktail(
+    name: String!
+    ingredients: [String]!
+    spirits: [String]!
+    garnish: String!
+    mixingMethod: MixingMethod!
+    glassType: String!
+    description: String!
+    instructions: String!
+    image: String!
+  ): Cocktail!
 }
