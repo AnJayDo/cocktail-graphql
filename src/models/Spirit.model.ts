@@ -5,7 +5,16 @@ const spiritSchema = new Schema({
   name: String,
   parent: {
     type: String,
-    enum: ['LIQUOR', 'RUM', 'VODKA', 'GIN', 'TEQUILA', 'SYRUP'],
+    enum: [
+      'LIQUOR',
+      'WHISKEY',
+      'COGNAC',
+      'RUM',
+      'VODKA',
+      'GIN',
+      'TEQUILA',
+      'SYRUP',
+    ],
   },
 });
 

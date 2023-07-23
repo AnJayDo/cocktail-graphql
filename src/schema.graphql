@@ -1,5 +1,7 @@
 enum ParantSpirit {
   LIQUOR
+  WHISKEY
+  COGNAC
   RUM
   VODKA
   GIN
